@@ -68,3 +68,8 @@ const RightSidebar = ( {user, transactions, banks}: RightSidebarProps ) => {
 }
 
 export default RightSidebar
+
+// RightSidebar displays two things: the user's profile (banner, first letter avatar, name and email),
+// and their linked bank cards shown in a stacked deck effect. The first card always shows on top,
+// the second card peeks behind it. If there is no second bank, only one card renders.
+// The "Add Bank" button at the top right will link to add a new bank account.
