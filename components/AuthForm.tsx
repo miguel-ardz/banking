@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { Control } from 'react-hook-form'
 
@@ -23,31 +23,59 @@ import { Input } from "@/components/ui/input"
 import { Divide, Loader2 } from 'lucide-react';
 import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
+import { useRouter } from 'next/navigation'
+import { signIn, signUp } from '@/lib/actions/user.actions'
 
 
 
 const AuthForm = ({ type }: { type: string }) => {
-    const [user, setUser] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
 
-    const formSchema = authFormSchema(type);
+    const router = useRouter()
 
-    // 1. Define your form.
+    const [user, setUser] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+
+    const formSchema = authFormSchema(type)
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            firstName: "",
+            lastName: "",
+            address1: "",
+            state: "",
+            postalCode: "",
+            dateOfBirth: "",
+            ssn: "",
             email: "",
             password: ''
         },
     })
 
-    // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // This will be type-safe and validated.
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsLoading(true)
-        console.log(values)
-        setIsLoading(false)
+        try {
+            // Sign up with Appwrite
+            // & create a plain link token
+            if (type === 'sign-up') {
+                const newUser = await signUp(data)
+
+                setUser(newUser)
+            }
+
+            if (type === 'sign-in') {
+                const response = await signIn({
+                    email: data.email,
+                    password: data.password,
+                })
+
+                if (response) router.push('/')
+            }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -111,6 +139,12 @@ const AuthForm = ({ type }: { type: string }) => {
                                         name="address1"
                                         label="Address"
                                         placeholder='Enter your specific address'
+                                    />
+                                    <CustomInput
+                                        control={form.control}
+                                        name="city"
+                                        label="City"
+                                        placeholder='Enter your city'
                                     />
                                     <div className="flex gap-4">
                                         <CustomInput
@@ -191,6 +225,8 @@ const AuthForm = ({ type }: { type: string }) => {
 }
 
 export default AuthForm
+
+
 
 // type="sign-in" → shows Sign In form → footer links to Sign Up
 // type="sign-up" → shows Sign Up form → footer links to Sign In

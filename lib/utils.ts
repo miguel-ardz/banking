@@ -197,15 +197,20 @@ export const getTransactionStatus = (date: Date) => {
 
 export const authFormSchema = (type: string) => z.object({
     // sign-up
-    firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-    lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-    address1: type === 'sign-in' ? z.string().optional() : z.string().max(50),
-    state: type === 'sign-in' ? z.string().optional() : z.string().min(2).max(2),
-    postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),
-    dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-    ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+    firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3, "First Name is required"),
+    lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3, "Last Name is required"),
+    address1: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Address is required").max(50),
+    city: type === 'sign-in' ? z.string().optional() : z.string().min(1, "City is required").max(50),
+    state: type === 'sign-in' ? z.string().optional() : z.string().min(2, "State is required").max(2),
+    postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3, "Postal Code is required").max(6),
+    dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3, "DOB of required"),
+    ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3, "SSN is required"),
 
     // both sign-in and sign-up
-    email: z.email(),
-    password: z.string().min(8),
+    email: z.email("Invalid email address"),
+    password: z.string().min(8, "Must be at least 8 characters"),
 })
+
+// Conceptually utility files in SWE practices It's just a place to put reusable helper 
+// functions/logic that don't belong to any one specific component — things like formatting 
+// functions, validation schemas, calculations, etc.
