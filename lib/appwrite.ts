@@ -45,7 +45,7 @@ export async function createAdminClient() {
 What Appwrite is: It's a backend service, it handles things like user accounts, databases, 
 and authentication so you don't have to build all that from scratch.
 What the appwrite.ts file does: It's the bridge between your Next.js app and Appwrite. 
-Like a phone line:
+Like a phone-line:
 createSessionClient() — connects to Appwrite on behalf of a logged in user using their session cookie
 createAdminClient() — connects to Appwrite with admin privileges using a secret key, for things like creating new users
 */

@@ -24,14 +24,12 @@ import { Divide, Loader2 } from 'lucide-react';
 import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils';
 import { useRouter } from 'next/navigation'
-import { signIn, signUp } from '@/lib/actions/user.actions'
+import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 
 
 
 const AuthForm = ({ type }: { type: string }) => {
-
     const router = useRouter()
-
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -43,6 +41,7 @@ const AuthForm = ({ type }: { type: string }) => {
             firstName: "",
             lastName: "",
             address1: "",
+            city: "",
             state: "",
             postalCode: "",
             dateOfBirth: "",
@@ -56,7 +55,7 @@ const AuthForm = ({ type }: { type: string }) => {
         setIsLoading(true)
         try {
             // Sign up with Appwrite
-            // & create a plain link token
+            // & create a plain token
             if (type === 'sign-up') {
                 const newUser = await signUp(data)
 
@@ -73,6 +72,7 @@ const AuthForm = ({ type }: { type: string }) => {
             }
         } catch (error) {
             console.log(error)
+            throw error
         } finally {
             setIsLoading(false)
         }
