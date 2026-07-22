@@ -38,3 +38,5 @@ const Home = async () => {
 }
 
 export default Home
+
+// This file represents the home dashboard of our app
