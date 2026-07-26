@@ -122,7 +122,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
             {user ? (
             <div className="flex flex-col gap-4">
-                <PlaidLink user={user} variant="primary" />
+                <PlaidLink user={user} variant="primary"/>
             </div>
             ) : (
             <>
@@ -236,8 +236,5 @@ const AuthForm = ({ type }: { type: string }) => {
 }
 
 export default AuthForm
-
-
-
 // type="sign-in" → shows Sign In form → footer links to Sign Up
 // type="sign-up" → shows Sign Up form → footer links to Sign In

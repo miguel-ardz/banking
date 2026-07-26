@@ -15,3 +15,11 @@ You never manually pass anything to {children} — Next.js handles it automatica
 The platform that we are using for this app for monitoring is Sentry 
 Sentry is like having a tireless watchdog for your app that never sleeps, catches every problem, and hands you exactly what you need to fix it quickly.
 -->
+
+<!-- 
+Plaid shows you your bank balance, Dwolla is the payment processor that moves money around. If you haven't moved any money Dwolla shows 0.
+-->
+
+<!-- 
+When transferring money to accounts and such, your bank balance will not change, it will typically take two days, because of the getTransactionStatus function in lib > utils.ts
+-->
