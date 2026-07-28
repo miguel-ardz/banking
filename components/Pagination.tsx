@@ -26,7 +26,7 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
             <Button
                 size="lg"
                 variant="ghost"
-                className="p-0 hover:bg-transparent"
+                className="p-0 hover:bg-transparent text-gray-900 dark:text-gray-300 disabled:text-gray-400 dark:disabled:text-gray-600"
                 onClick={() => handleNavigation("prev")}
                 disabled={Number(page) <= 1}
             >
@@ -35,17 +35,17 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
                     alt="arrow"
                     width={20}
                     height={20}
-                    className="mr-2"
+                    className="mr-2 dark:brightness-[3] dark:invert-0"
                 />
                 Prev
             </Button>
-            <p className="text-14 flex items-center px-2">
+            <p className="text-14 flex items-center px-2 text-gray-900 dark:text-gray-300">
                 {page} / {totalPages}
             </p>
             <Button
                 size="lg"
                 variant="ghost"
-                className="p-0 hover:bg-transparent"
+                className="p-0 hover:bg-transparent text-gray-900 dark:text-gray-300 disabled:text-gray-400 dark:disabled:text-gray-600"
                 onClick={() => handleNavigation("next")}
                 disabled={Number(page) >= totalPages}
             >
@@ -55,7 +55,7 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
                     alt="arrow"
                     width={20}
                     height={20}
-                    className="ml-2 -scale-x-100"
+                    className="ml-2 -scale-x-100 dark:brightness-[3] dark:invert-0"
                 />
             </Button>
         </div>

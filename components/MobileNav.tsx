@@ -14,12 +14,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import Footer from "./Footer";
+import PlaidLink from "./PlaidLink";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
   return (
     <section className="w-full max-w-[264px]">
-      <Sheet>
+      <Sheet modal={false}>
         <SheetTrigger>
           <Image
             src="/icons/hamburger.svg"
@@ -29,7 +30,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
             className="cursor-pointer"
           />
         </SheetTrigger>
-        <SheetContent side="left" className="border-none bg-white p-6">
+        <SheetContent side="left" className="border-none bg-white dark:bg-gray-950 p-6">
           <SheetHeader className="hidden">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
           </SheetHeader>
@@ -40,10 +41,10 @@ const MobileNav = ({ user }: MobileNavProps) => {
               height={34}
               alt="Horizon Logo"
             />
-            <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">Horizon</h1>
+            <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1 dark:text-white">Horizon</h1>
           </Link>
           <div className="mobilenav-sheet">
-            <SheetClose asChild>
+            {/* <SheetClose asChild> */}
               <nav className="flex h-full flex-col gap-6 pt-16 text-white">
                 {sidebarLinks.map((item) => {
                   const isActive = pathname === item.route || pathname.startsWith(`${item.route}/`)
@@ -56,11 +57,11 @@ const MobileNav = ({ user }: MobileNavProps) => {
                           alt={item.label}
                           width={20}
                           height={20}
-                          className={cn({
+                          className={cn('dark:brightness-[3] dark:invert-0', {
                             'brightness-[3] invert-0': isActive
                           })}
                         />
-                        <p className={cn('text-16 font-semibold text-black-2', {
+                        <p className={cn('text-16 font-semibold text-black-2 dark:text-gray-300', {
                           'text-white': isActive
                         })}>
                           {item.label}
@@ -70,11 +71,11 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   )
                 })}
 
-                USER
+                <PlaidLink user={user} variant="primary" />
               </nav>
-            </SheetClose>
+            {/* </SheetClose> */}
 
-            <Footer user={user} type="mobile"/>
+            <Footer user={user} type="mobile" />
           </div>
         </SheetContent>
       </Sheet>
@@ -83,7 +84,6 @@ const MobileNav = ({ user }: MobileNavProps) => {
 }
 
 export default MobileNav
-
 /*
 <Sheet>                    ← the whole drawer system
   <SheetTrigger>           ← the hamburger icon you tap to open it

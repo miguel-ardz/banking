@@ -43,7 +43,6 @@ export async function createAdminClient() {
     }
   };
 }
-
 /*
 What Appwrite is: It's a backend service, it handles things like user accounts, databases, 
 and authentication so you don't have to build all that from scratch.

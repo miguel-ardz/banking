@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
@@ -106,26 +105,26 @@ export function getAccountTypeColors(type: AccountTypes) {
   switch (type) {
     case "depository":
       return {
-        bg: "bg-blue-25",
-        lightBg: "bg-blue-100",
-        title: "text-blue-900",
-        subText: "text-blue-700",
+        bg: "bg-blue-25 dark:bg-blue-950/30",
+        lightBg: "bg-blue-100 dark:bg-blue-900/50",
+        title: "text-blue-900 dark:text-blue-200",
+        subText: "text-blue-700 dark:text-blue-300",
       };
 
     case "credit":
       return {
-        bg: "bg-success-25",
-        lightBg: "bg-success-100",
-        title: "text-success-900",
-        subText: "text-success-700",
+        bg: "bg-success-25 dark:bg-green-950/30",
+        lightBg: "bg-success-100 dark:bg-green-900/50",
+        title: "text-success-900 dark:text-green-200",
+        subText: "text-success-700 dark:text-green-300",
       };
 
     default:
       return {
-        bg: "bg-green-25",
-        lightBg: "bg-green-100",
-        title: "text-green-900",
-        subText: "text-green-700",
+        bg: "bg-green-25 dark:bg-green-950/30",
+        lightBg: "bg-green-100 dark:bg-green-900/50",
+        title: "text-green-900 dark:text-green-200",
+        subText: "text-green-700 dark:text-green-300",
       };
   }
 }
@@ -195,22 +194,30 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? "Processing" : "Success";
 };
 
+// postal code and ssn have regex so that users can't type
+// random crap
 export const authFormSchema = (type: string) => z.object({
     // sign-up
-    firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3, "First Name is required"),
-    lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3, "Last Name is required"),
+    firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3, "First Name is required").max(20),
+
+    lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3, "Last Name is required").max(15),
+
     address1: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Address is required").max(50),
-    city: type === 'sign-in' ? z.string().optional() : z.string().min(1, "City is required").max(50),
+
+    city: type === 'sign-in' ? z.string().optional() : z.string().min(1, "City is required").max(25),
+
     state: type === 'sign-in' ? z.string().optional() : z.string().min(2, "State is required").max(2),
-    postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3, "Postal Code is required").max(6),
-    dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3, "DOB of required"),
-    ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3, "SSN is required"),
+
+    postalCode: type === 'sign-in' ? z.string().optional() : z.string().regex(/^\d{5}$/, "Must be exactly 5 digits"),
+
+    dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3, "DOB of required").max(10),
+    
+    ssn: type === 'sign-in' ? z.string().optional() : z.string().regex(/^\d{4}$/, "Must be exactly 4 digits"),
 
     // both sign-in and sign-up
-    email: z.email("Invalid email address"),
+    email: z.email("Invalid email address").lowercase(),
     password: z.string().min(8, "Must be at least 8 characters"),
 })
-
 // Conceptually utility files in SWE practices It's just a place to put reusable helper 
 // functions/logic that don't belong to any one specific component — things like formatting 
 // functions, validation schemas, calculations, etc.

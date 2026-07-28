@@ -51,41 +51,41 @@ export const ITEMS = [
 
 export const topCategoryStyles = {
   "Food and Drink": {
-    bg: "bg-blue-25",
-    circleBg: "bg-blue-100",
+    bg: "bg-blue-25 dark:bg-blue-950/30",
+    circleBg: "bg-blue-100 dark:bg-blue-900/50",
     text: {
-      main: "text-blue-900",
-      count: "text-blue-700",
+      main: "text-blue-900 dark:text-blue-200",
+      count: "text-blue-700 dark:text-blue-300",
     },
     progress: {
-      bg: "bg-blue-100",
-      indicator: "bg-blue-700",
+      bg: "bg-blue-100 dark:bg-blue-900/50",
+      indicator: "bg-blue-700 dark:bg-blue-400",
     },
     icon: "/icons/monitor.svg",
   },
   Travel: {
-    bg: "bg-success-25",
-    circleBg: "bg-success-100",
+    bg: "bg-success-25 dark:bg-green-950/30",
+    circleBg: "bg-success-100 dark:bg-green-900/50",
     text: {
-      main: "text-success-900",
-      count: "text-success-700",
+      main: "text-success-900 dark:text-green-200",
+      count: "text-success-700 dark:text-green-300",
     },
     progress: {
-      bg: "bg-success-100",
-      indicator: "bg-success-700",
+      bg: "bg-success-100 dark:bg-green-900/50",
+      indicator: "bg-success-700 dark:bg-green-400",
     },
     icon: "/icons/coins.svg",
   },
   default: {
-    bg: "bg-pink-25",
-    circleBg: "bg-pink-100",
+    bg: "bg-pink-25 dark:bg-pink-950/30",
+    circleBg: "bg-pink-100 dark:bg-pink-900/50",
     text: {
-      main: "text-pink-900",
-      count: "text-pink-700",
+      main: "text-pink-900 dark:text-pink-200",
+      count: "text-pink-700 dark:text-pink-300",
     },
     progress: {
-      bg: "bg-pink-100",
-      indicator: "bg-pink-700",
+      bg: "bg-pink-100 dark:bg-pink-900/50",
+      indicator: "bg-pink-700 dark:bg-pink-400",
     },
     icon: "/icons/shopping-bag.svg",
   },
@@ -117,22 +117,22 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-inherit",
   },
   Processing: {
-    borderColor: "border-[#F2F4F7]",
+    borderColor: "border-[#F2F4F7] dark:border-gray-700",
     backgroundColor: "bg-gray-500",
-    textColor: "text-[#344054]",
-    chipBackgroundColor: "bg-[#F2F4F7]",
+    textColor: "text-[#344054] dark:text-gray-300",
+    chipBackgroundColor: "bg-[#F2F4F7] dark:bg-gray-800",
   },
   Success: {
-    borderColor: "border-[#12B76A]",
+    borderColor: "border-[#12B76A] dark:border-green-700",
     backgroundColor: "bg-[#12B76A]",
-    textColor: "text-[#027A48]",
-    chipBackgroundColor: "bg-[#ECFDF3]",
+    textColor: "text-[#027A48] dark:text-green-300",
+    chipBackgroundColor: "bg-[#ECFDF3] dark:bg-green-950/40",
   },
   Travel: {
-    borderColor: "border-[#0047AB]",
+    borderColor: "border-[#0047AB] dark:border-blue-700",
     backgroundColor: "bg-blue-500",
-    textColor: "text-blue-700",
-    chipBackgroundColor: "bg-[#ECFDF3]",
+    textColor: "text-blue-700 dark:text-blue-300",
+    chipBackgroundColor: "bg-[#ECFDF3] dark:bg-blue-950/40",
   },
   default: {
     borderColor: "",
@@ -141,3 +141,11 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-inherit",
   },
 };
+
+export const US_STATES = [
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
+    "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
+    "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
+    "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
+    "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"
+]

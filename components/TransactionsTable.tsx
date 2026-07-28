@@ -31,14 +31,14 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 const TransactionsTable = ({ transactions }: TransactionTableProps) => {
     return (
         <Table>
-            <TableHeader className="bg-[#f9fafb]">
+            <TableHeader className="bg-[#f9fafb] dark:bg-gray-900">
                 <TableRow>
-                    <TableHead className="px-2">Transaction</TableHead>
-                    <TableHead className="px-2">Amount</TableHead>
-                    <TableHead className="px-2">Status</TableHead>
-                    <TableHead className="px-2">Date</TableHead>
-                    <TableHead className="px-2 max-md:hidden">Channel</TableHead>
-                    <TableHead className="px-2 max-md:hidden">Category</TableHead>
+                    <TableHead className="px-2 dark:text-gray-300">Transaction</TableHead>
+                    <TableHead className="px-2 dark:text-gray-300">Amount</TableHead>
+                    <TableHead className="px-2 dark:text-gray-300">Status</TableHead>
+                    <TableHead className="px-2 dark:text-gray-300">Date</TableHead>
+                    <TableHead className="px-2 max-md:hidden dark:text-gray-300">Channel</TableHead>
+                    <TableHead className="px-2 max-md:hidden dark:text-gray-300">Category</TableHead>
                 </TableRow>
             </TableHeader>
 
@@ -51,10 +51,10 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                     const isCredit = t.type === 'credit';
 
                     return (
-                        <TableRow key={t.id} className={`${isDebit || amount[0] === '-' ? 'bg-[#FFFBFA]' : 'bg-[#F6FEF9]'} !border-b border-gray-250`}>
+                        <TableRow key={t.id} className={`${isDebit || amount[0] === '-' ? 'bg-[#FFFBFA] dark:bg-red-950/20' : 'bg-[#F6FEF9] dark:bg-green-950/20'} !border-b border-gray-250 dark:border-gray-800`}>
                             <TableCell className="max-w-[250px] pl-2 pr-10">
                                 <div className="flex items-center gap-3">
-                                    <h1 className="text-14 truncate font-semibold text-[#344054]">
+                                    <h1 className="text-14 truncate font-semibold text-[#344054] dark:text-gray-200">
                                         {removeSpecialCharacters(t.name)}
                                     </h1>
                                 </div>
@@ -70,11 +70,11 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                                 <CategoryBadge category={status} />
                             </TableCell>
 
-                            <TableCell className="min-w-32 pl-2 pr-10">
+                            <TableCell className="min-w-32 pl-2 pr-10 dark:text-gray-300">
                                 {formatDateTime(new Date(t.date)).dateTime}
                             </TableCell>
 
-                            <TableCell className="pl-2 pr-10 capitalize min-w-24">
+                            <TableCell className="pl-2 pr-10 capitalize min-w-24 dark:text-gray-300">
                                 {t.paymentChannel}
                             </TableCell>
 
