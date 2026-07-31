@@ -278,7 +278,7 @@ body {
 
   /* Auth */
   .auth-asset {
-    @apply flex h-screen w-full sticky top-0 items-center justify-end bg-sky-1 max-lg:hidden dark:bg-gray-900;
+    @apply flex h-screen w-full sticky top-0 items-center justify-center bg-sky-1 max-lg:hidden dark:bg-gray-900;
   }
 
   /* Auth Form */

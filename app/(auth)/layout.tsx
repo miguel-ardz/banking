@@ -7,17 +7,18 @@ export default function RootLayout({
 }>) {
   return (
     <main className="flex min-h-screen w-full justify-between font-inter">
-        {children}
-        <div className="auth-asset">
-          <div>
-            <Image
-              src="/icons/auth-image.svg"
-              alt="Auth image"
-              width={500}
-              height={500}
-            />
-          </div>
+      {children}
+      <div className="auth-asset">
+        <div className="overflow-hidden">
+          <Image
+            src="/icons/auth-image.svg"
+            alt="Auth image"
+            width={500}
+            height={500}
+            style={{ width: "auto", height: "auto" }}
+          />
         </div>
+      </div>
     </main>
   );
 }

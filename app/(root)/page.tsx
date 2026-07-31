@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import HeaderBox from '@/components/HeaderBox'
 import RecentTransactions from '@/components/RecentTransactions';
 import RightSidebar from '@/components/RightSidebar';
@@ -12,6 +13,11 @@ const Home = async ({ searchParams }: SearchParamProps) => {
   const currentPage = Number(page as string) || 1;
 
   const loggedIn = await getLoggedInUser();
+
+  if (!loggedIn) {
+    redirect('/sign-in');
+  }
+
   const accounts = await getAccounts({ userId: loggedIn.$id })
 
   if (!accounts) return;
@@ -57,4 +63,4 @@ const Home = async ({ searchParams }: SearchParamProps) => {
 }
 
 export default Home
-// This file represents the home dashboard of our app
+// This file represents the HOME DASHBOARD of our app
